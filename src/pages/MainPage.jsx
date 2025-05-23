@@ -1,13 +1,14 @@
 import BookList from '../components/BookList'
 import Filters from '../components/Filters';
+import {Box} from '@mui/material'
 
 const MainPage = () => {
 
     return (
-        <div>
+        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Filters />
             <BookList />
-        </div>
+        </Box>
     );
 };
 

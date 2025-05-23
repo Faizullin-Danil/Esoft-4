@@ -5,7 +5,9 @@ const books = [
     label: '1984',
     author: 'Джордж Оруэлл',
     year: 1949,
-    isFavourite: true
+    isFavourite: false,
+    description: 'Антиутопия о тоталитарном обществе, где Большой Брат следит за каждым.',
+    isbn: '9785171043639' // ISBN для русского издания
   },
   {
     id: 2,
@@ -13,7 +15,9 @@ const books = [
     label: 'Убить пересмешника',
     author: 'Харпер Ли',
     year: 1960,
-    isFavourite: false
+    isFavourite: false,
+    description: 'История расовой несправедливости и взросления в американском Юге.',
+    isbn: '9785170936765'
   },
   {
     id: 3,
@@ -21,7 +25,9 @@ const books = [
     label: 'Великий Гэтсби',
     author: 'Фрэнсис Скотт Фицджеральд',
     year: 1925,
-    isFavourite: true
+    isFavourite: false,
+    description: 'Трагическая история богача Джея Гэтсби и его любви к Дэйзи.',
+    isbn: '9785171203203'
   },
   {
     id: 4,
@@ -29,7 +35,9 @@ const books = [
     label: 'Гордость и предубеждение',
     author: 'Джейн Остин',
     year: 1813,
-    isFavourite: false
+    isFavourite: false,
+    description: 'Классика о любви Элизабет Беннет и мистера Дарси.',
+    isbn: '9785699454165'
   },
   {
     id: 5,
@@ -37,7 +45,9 @@ const books = [
     label: 'Над пропастью во ржи',
     author: 'Джером Д. Сэлинджер',
     year: 1951,
-    isFavourite: false
+    isFavourite: false,
+    description: 'История подростка Холдена Колфилда, который бежит от лицемерия взрослых.',
+    isbn: '9785170801155'
   },
   {
     id: 6,
@@ -45,7 +55,9 @@ const books = [
     label: 'О дивный новый мир',
     author: 'Олдос Хаксли',
     year: 1932,
-    isFavourite: true
+    isFavourite: false,
+    description: 'Антиутопия о мире, где люди генетически запрограммированы на счастье.',
+    isbn: '9785170877655'
   },
   {
     id: 7,
@@ -53,7 +65,9 @@ const books = [
     label: 'Моби Дик',
     author: 'Герман Мелвилл',
     year: 1851,
-    isFavourite: false
+    isFavourite: false,
+    description: 'Эпическая история капитана Ахава и его охоты на белого кита.',
+    isbn: '9785170933122'
   },
   {
     id: 8,
@@ -61,7 +75,9 @@ const books = [
     label: 'Преступление и наказание',
     author: 'Фёдор Достоевский',
     year: 1866,
-    isFavourite: true
+    isFavourite: false,
+    description: 'Философский роман о студенте Раскольникове, совершившем убийство.',
+    isbn: '9785170938455'
   },
   {
     id: 9,
@@ -69,7 +85,9 @@ const books = [
     label: 'Властелин колец',
     author: 'Дж. Р. Р. Толкин',
     year: 1954,
-    isFavourite: true
+    isFavourite: false,
+    description: 'Эпическая фэнтези-сага о борьбе за Кольцо Всевластья.',
+    isbn: '9785170931234'
   },
   {
     id: 10,
@@ -77,7 +95,9 @@ const books = [
     label: 'Хоббит, или Туда и обратно',
     author: 'Дж. Р. Р. Толкин',
     year: 1937,
-    isFavourite: false
+    isFavourite: false,
+    description: 'Приключения хоббита Бильбо Бэггинса и компании гномов.',
+    isbn: '9785170934563'
   }
 ];
 

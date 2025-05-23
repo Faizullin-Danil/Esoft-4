@@ -4,15 +4,61 @@ import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { Box, Button } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { filterByFavourites, filterByAuthors, filterByYears, resetFilters } from '../store/BooksSlice';
+import { useState } from 'react';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const Filters = () => {
-    const books = useSelector(state => state.books.value);
+    const allBooks = useSelector(state => state.books.all)
+    const showFavouritesOnly = useSelector(state => state.books.showFavouritesOnly);
+    const dispatch = useDispatch()
+    const [valueFrom, setValueFrom] = useState()
+    const [valueTo, setValueTo] = useState()
+    const [selectedAuthors, setSelectedAuthors] = useState([]);
 
-    const authors = [...new Set(books.map(book => book.author))];
+    const authors = [...new Set(allBooks.map(book => book.author))]
+
+    const handleChange = (authors) => {
+        setSelectedAuthors(authors)
+        if (authors.length === 0) { 
+            dispatch(resetFilters())
+        } else {
+            dispatch(filterByAuthors(authors))
+        }
+
+    }
+
+    const handleResetFilters = () => {
+        dispatch(resetFilters());
+        setSelectedAuthors([]);
+        setValueFrom('')
+        setValueTo('')
+    };  
+
+
+    const handleFilterByFavourites = () => {
+        dispatch(filterByFavourites())
+        setSelectedAuthors([]);
+        setValueFrom('')
+        setValueTo('')
+    };
+
+    const handleChangeFrom = (e) => {
+        setValueFrom(e.target.value)
+    }
+
+    const handleChangeTo = (e) => {
+        setValueTo(e.target.value)
+    }
+
+    const handleClickFilterByYears = () => {
+        const years = {valueFrom: valueFrom, valueTo: valueTo}
+        setSelectedAuthors([]);
+        dispatch(filterByYears(years))
+    }
 
     return (
         <Box sx={{ display: 'flex', ml: 2, gap: 1}}>
@@ -21,7 +67,9 @@ const Filters = () => {
                 options={authors}
                 disableCloseOnSelect
                 size="small"
+                value={selectedAuthors}
                 getOptionLabel={(option) => option}
+                onChange={(event, value) => handleChange(value)} 
                 renderOption={(props, option, { selected }) => {
                     const { key, ...optionProps } = props;
                     return (
@@ -46,17 +94,26 @@ const Filters = () => {
                     type="number"
                     placeholder="от"
                     size="small"
-                    sx={{ width: 80 }}
+                    value={valueFrom}
+                    sx={{ width: 150 }}
+                    onChange={handleChangeFrom}
                 />
                 <TextField
                     type="number"
                     placeholder="до"
+                    value={valueTo}
                     size="small"
-                    sx={{ width: 80 }}
+                    sx={{ width: 150 }}
+                    onChange={handleChangeTo}
                 />
-                <Button>Фильтр по годам</Button>
-                <Button>Только избранные</Button>
-                <Button>Сбросить фильтры</Button>
+                <Button onClick={() => handleClickFilterByYears()}>Фильтр по годам</Button>
+            </Box>
+            <Box sx={{ ml: 'auto', }}>
+                {showFavouritesOnly 
+                    ? <Button sx={{width: '200px' }} onClick={handleFilterByFavourites}>Все</Button>
+                    : <Button sx={{width: '200px' }} onClick={handleFilterByFavourites}>Только избранные</Button>
+                }
+                <Button onClick={() => handleResetFilters()}>Сбросить фильтры</Button>
             </Box>
         </Box>
     );
