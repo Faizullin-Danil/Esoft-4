@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext.jsx'
 import { Provider } from 'react-redux'
 import Router from './Router'
 import store from "./store/store"; 
+import './index.css'; 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

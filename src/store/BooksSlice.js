@@ -47,8 +47,14 @@ export const BooksSlice = createSlice({
             state.value = state.all
             state.showFavouritesOnly = false
         },
+
+        search: (state, action) => {
+            state.value = state.all.filter(book => 
+                book.label.toLowerCase().includes(action.payload) || book.author.toLowerCase().includes(action.payload)
+            )
+        },
     }
 })
 
-export const { toggleFavourite, filterByFavourites, filterByAuthors, filterByYears, resetFilters } = BooksSlice.actions;
+export const { toggleFavourite, filterByFavourites, filterByAuthors, filterByYears, resetFilters, search } = BooksSlice.actions;
 export default BooksSlice

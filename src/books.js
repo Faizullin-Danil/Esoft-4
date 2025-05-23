@@ -7,7 +7,7 @@ const books = [
     year: 1949,
     isFavourite: false,
     description: 'Антиутопия о тоталитарном обществе, где Большой Брат следит за каждым.',
-    isbn: '9785171043639' // ISBN для русского издания
+    isbn: '9785171043639' 
   },
   {
     id: 2,
@@ -98,6 +98,106 @@ const books = [
     isFavourite: false,
     description: 'Приключения хоббита Бильбо Бэггинса и компании гномов.',
     isbn: '9785170934563'
+  },
+  {
+    id: 11,
+    coverUrl: 'https://example.com/cover11.jpg',
+    label: 'Анна Каренина',
+    author: 'Лев Толстой',
+    year: 1877,
+    isFavourite: false,
+    description: 'Трагическая история любви замужней женщины и офицера Вронского.',
+    isbn: '9785170937892'
+  },
+  {
+    id: 12,
+    coverUrl: 'https://example.com/cover12.jpg',
+    label: 'Мастер и Маргарита',
+    author: 'Михаил Булгаков',
+    year: 1967,
+    isFavourite: false,
+    description: 'Мистический роман о дьяволе в Москве и любви между Мастером и Маргаритой.',
+    isbn: '9785170924564'
+  },
+  {
+    id: 13,
+    coverUrl: 'https://example.com/cover13.jpg',
+    label: 'Три товарища',
+    author: 'Эрих Мария Ремарк',
+    year: 1936,
+    isFavourite: false,
+    description: 'История дружбы, любви и войны в послевоенной Германии.',
+    isbn: '9785170939872'
+  },
+  {
+    id: 14,
+    coverUrl: 'https://example.com/cover14.jpg',
+    label: '451 градус по Фаренгейту',
+    author: 'Рэй Брэдбери',
+    year: 1953,
+    isFavourite: false,
+    description: 'Антиутопия о мире, где книги запрещены и сжигаются.',
+    isbn: '9785170909516'
+  },
+  {
+    id: 15,
+    coverUrl: 'https://example.com/cover15.jpg',
+    label: 'Сто лет одиночества',
+    author: 'Габриэль Гарсия Маркес',
+    year: 1967,
+    isFavourite: false,
+    description: 'Магический реализм в истории семьи Буэндиа в городе Макондо.',
+    isbn: '9785170933214'
+  },
+  {
+    id: 16,
+    coverUrl: 'https://example.com/cover16.jpg',
+    label: 'Идиот',
+    author: 'Фёдор Достоевский',
+    year: 1869,
+    isFavourite: false,
+    description: 'Роман о князе Мышкине, человеке с доброй душой, в мире жестоких интриг.',
+    isbn: '9785170939513'
+  },
+  {
+    id: 17,
+    coverUrl: 'https://example.com/cover17.jpg',
+    label: 'Автостопом по галактике',
+    author: 'Дуглас Адамс',
+    year: 1979,
+    isFavourite: false,
+    description: 'Сумасшедшее межгалактическое приключение Артура Дента и его друзей.',
+    isbn: '9785170901237'
+  },
+  {
+    id: 18,
+    coverUrl: 'https://example.com/cover18.jpg',
+    label: 'Портрет Дориана Грея',
+    author: 'Оскар Уайльд',
+    year: 1890,
+    isFavourite: false,
+    description: 'История молодого человека, чья душа стареет вместо него.',
+    isbn: '9785170934123'
+  },
+  {
+    id: 19,
+    coverUrl: 'https://example.com/cover19.jpg',
+    label: 'Шантарам',
+    author: 'Грегори Дэвид Робертс',
+    year: 2003,
+    isFavourite: false,
+    description: 'Автобиографичный роман беглого заключённого в Индии.',
+    isbn: '9785170928824'
+  },
+  {
+    id: 20,
+    coverUrl: 'https://example.com/cover20.jpg',
+    label: 'Цветы для Элджернона',
+    author: 'Даниел Киз',
+    year: 1966,
+    isFavourite: false,
+    description: 'История умственного инвалида, которому сделали экспериментальную операцию.',
+    isbn: '9785170927316'
   }
 ];
 

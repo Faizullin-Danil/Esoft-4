@@ -52,7 +52,7 @@ const BookPage = () => {
                     <Typography >Год: {book.year}</Typography>
                     <Typography >ISBN: {book.isbn}</Typography>
                 </Box>
-                <Button onClick={() => dispatch(toggleFavourite(book.id))}
+                <Button color='inherit' onClick={() => dispatch(toggleFavourite(book.id))}
                         sx={{height: 30}}>
                     {book.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </Button>
