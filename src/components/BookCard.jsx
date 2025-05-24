@@ -5,9 +5,11 @@ import { toggleFavourite } from '../store/BooksSlice';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { Link } from "react-router";
+import { useTheme } from '../context/ThemeContext';
 
 const BookCard = React.memo(({ book }) => {
     const dispatch = useDispatch();
+    const { isDarkTheme } = useTheme();
 
     return (
         <Box
@@ -16,6 +18,7 @@ const BookCard = React.memo(({ book }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 border: '1px solid',
+                borderColor: isDarkTheme ? 'black' : 'blue',
                 p: 1,
                 gap: 2,
                 width: '100%',
@@ -45,14 +48,14 @@ const BookCard = React.memo(({ book }) => {
                             }}
                         />
                     </Box>
-                    <Box sx={{ textAlign: 'center', mt: 1 }}>
+                    <Box sx={{ textAlign: 'center', mt: 1, color: isDarkTheme ? 'black' : 'blue' }}>
                         <Typography sx={{ fontWeight: 'bold' }}>{book.label}</Typography>
                         <Typography>{book.author}</Typography>
                         <Typography>{book.year}</Typography>
                     </Box>
                 </Box>
             </Link>
-            <Button onClick={() => dispatch(toggleFavourite(book.id))}>
+            <Button  onClick={() => dispatch(toggleFavourite(book.id))}>
                 {book.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </Button>
         </Box>

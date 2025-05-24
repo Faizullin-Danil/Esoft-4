@@ -2,8 +2,6 @@ import { Typography, Box, Button } from '@mui/material';
 import { useParams, useNavigate } from "react-router";
 import { useSelector } from 'react-redux';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { toggleFavourite } from '../store/BooksSlice';
 import { useDispatch } from 'react-redux';
 import Radio from '@mui/material/Radio';
@@ -12,6 +10,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
+
 
 const BookPage = () => {
     const { id } = useParams()
@@ -21,12 +21,13 @@ const BookPage = () => {
     const [textColor, setTextColor] = useState('black')
     const [textSize, setTextSize] = useState('medium')
     const [isFontBold, setIsFontBold] = useState(false)
+    const { isDarkTheme } = useTheme();
 
     const book = allBooks.find(book => book.id === Number(id))
     console.log(isFontBold)
 
     return (
-        <Box sx={{width: '80%', mx: 'auto', display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Box sx={{width: '80%', mx: 'auto', display: 'flex', flexDirection: 'column', gap: 2, color: isDarkTheme ? 'black' : 'blue' }}>
             <Box sx={{ mx: 'auto', display: 'flex', gap: 2  }}>
                 <ArrowBackIcon onClick={() => navigate(-1)} sx={{'&:hover': {
                     cursor: 'pointer',
@@ -51,17 +52,17 @@ const BookPage = () => {
                     <Typography >{book.description}</Typography>
                     <Typography >Год: {book.year}</Typography>
                     <Typography >ISBN: {book.isbn}</Typography>
+                    <Button onClick={() => dispatch(toggleFavourite(book.id))}>
+                        {book.isFavourite ? 'Убрать из избранного' : 'Добавить в избранное'}
+                    </Button>
                 </Box>
-                <Button color='inherit' onClick={() => dispatch(toggleFavourite(book.id))}
-                        sx={{height: 30}}>
-                    {book.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                </Button>
+                
             </Box>
             <Box>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 5}}>
                     <Typography variant='h5' sx={{mb: 3}}>Текст для чтения</Typography>
                     <FormControl>
-                        <FormLabel id="demo-row-radio-buttons-group-label">Цвет текста</FormLabel>
+                        <FormLabel  id="demo-row-radio-buttons-group-label">Цвет текста</FormLabel>
                         <RadioGroup
                             row
                             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -87,8 +88,8 @@ const BookPage = () => {
                         </RadioGroup>
                     </FormControl>
                     {isFontBold 
-                        ? <Button sx={{width: '200px' }} onClick={() => setIsFontBold(prev => !prev)}>Обычный шрифт</Button>
-                        : <Button sx={{width: '200px' }} onClick={() => setIsFontBold(prev => !prev)}>Жирный шрифт</Button>
+                        ? <Button onClick={() => setIsFontBold(prev => !prev)}>Обычный шрифт</Button>
+                        : <Button onClick={() => setIsFontBold(prev => !prev)}>Жирный шрифт</Button>
                     }
                 </Box>
                 <Box sx={{ 

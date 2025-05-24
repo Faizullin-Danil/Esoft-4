@@ -7,6 +7,7 @@ import { Box, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { filterByFavourites, filterByAuthors, filterByYears, resetFilters } from '../store/BooksSlice';
 import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -18,6 +19,7 @@ const Filters = () => {
     const [valueFrom, setValueFrom] = useState()
     const [valueTo, setValueTo] = useState()
     const [selectedAuthors, setSelectedAuthors] = useState([]);
+    const { isDarkTheme } = useTheme();
 
     const authors = [...new Set(allBooks.map(book => book.author))]
 
@@ -84,9 +86,10 @@ const Filters = () => {
                         </li>
                     );
                 }}
-                sx={{ width: 300 }}
+                sx={{ width: 300}}
+               
                 renderInput={(params) => (
-                    <TextField {...params} label="Выберите автора" size="small" />
+                    <TextField {...params} color='primary' label="Выберите автора" size="small"/>
                 )}
             />
             <Box display="flex" gap={1} alignItems="center">
@@ -106,14 +109,14 @@ const Filters = () => {
                     sx={{ width: 150 }}
                     onChange={handleChangeTo}
                 />
-                <Button onClick={() => handleClickFilterByYears()}>Фильтр по годам</Button>
+                <Button  onClick={() => handleClickFilterByYears()}>Фильтр по годам</Button>
             </Box>
-            <Box sx={{ ml: 'auto', }}>
+            <Box sx={{ ml: 'auto'}}>
                 {showFavouritesOnly 
-                    ? <Button sx={{width: '200px' }} onClick={handleFilterByFavourites}>Все</Button>
-                    : <Button sx={{width: '200px' }} onClick={handleFilterByFavourites}>Только избранные</Button>
+                    ? <Button onClick={handleFilterByFavourites}>Все</Button>
+                    : <Button onClick={handleFilterByFavourites}>Только избранные</Button>
                 }
-                <Button onClick={() => handleResetFilters()}>Сбросить фильтры</Button>
+                <Button sx={{color: isDarkTheme ? 'black' : 'blue'}} onClick={() => handleResetFilters()}>Сбросить фильтры</Button>
             </Box>
         </Box>
     );

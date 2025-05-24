@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import Router from './Router'
 import store from "./store/store"; 
 import './index.css'; 
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
