@@ -1,13 +1,16 @@
 import { BrowserRouter, Route, Routes} from "react-router-dom"
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import MainPage from "./pages/MainPage";
-import BookPage from "./pages/BookPage";
 import Layout from "./components/Layout";
 import { Box, CircularProgress } from "@mui/material";
 
+const LazyBookPage = lazy(() => import('./pages/BookPage'))
+const LazySettingsPage = lazy(() => import('./pages/SettingsPage'));
+
 const routes = [
   { path: '', element: <MainPage /> },
-  { path: '/book/:id', element: <BookPage /> },
+  { path: '/book/:id', element: <LazyBookPage /> },
+  { path: '/settings', element: <LazySettingsPage /> },
 ];
 
 const Router = () => {

@@ -7,7 +7,7 @@ import { Box, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { filterByFavourites, filterByAuthors, filterByYears, resetFilters } from '../store/BooksSlice';
 import { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
+import Modal from '../components/Modal';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -19,7 +19,7 @@ const Filters = () => {
     const [valueFrom, setValueFrom] = useState()
     const [valueTo, setValueTo] = useState()
     const [selectedAuthors, setSelectedAuthors] = useState([]);
-    const { isDarkTheme } = useTheme();
+    const [openModal, setOpenModal] = useState(false);
 
     const authors = [...new Set(allBooks.map(book => book.author))]
 
@@ -30,8 +30,12 @@ const Filters = () => {
         } else {
             dispatch(filterByAuthors(authors))
         }
-
     }
+
+    const handleChangeFormData = (field) => (e) => {
+        setFormData({ ...formData, [field]: e.target.value });
+        setErrors({ ...errors, [field]: false });
+    };
 
     const handleResetFilters = () => {
         dispatch(resetFilters());
@@ -61,6 +65,9 @@ const Filters = () => {
         setSelectedAuthors([]);
         dispatch(filterByYears(years))
     }
+
+    console.log('nen')
+
 
     return (
         <Box sx={{ display: 'flex', ml: 2, gap: 1}}>
@@ -116,8 +123,10 @@ const Filters = () => {
                     ? <Button onClick={handleFilterByFavourites}>Все</Button>
                     : <Button onClick={handleFilterByFavourites}>Только избранные</Button>
                 }
-                <Button sx={{color: isDarkTheme ? 'black' : 'blue'}} onClick={() => handleResetFilters()}>Сбросить фильтры</Button>
+                <Button onClick={() => handleResetFilters()}>Сбросить фильтры</Button>
+                <Button onClick={() => setOpenModal(true)}>Добавить книгу</Button>
             </Box>
+            {openModal && <Modal openDialog={openModal} setOpenDialog={setOpenModal} handleResetFilters={handleResetFilters} />}
         </Box>
     );
 };

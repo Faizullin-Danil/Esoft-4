@@ -26,26 +26,26 @@ export const ThemeProvider = ({ children }) => {
                 styleOverrides: {
                     root: {
                         '& .MuiInputLabel-root': {
-                            color: mode === 'dark' ? 'black' : 'blue',
+                            color: mode === 'dark' ? 'white' : 'blue',
                             '&.Mui-focused': { // Стили для label в фокусе
-                                color: mode === 'dark' ? 'black' : 'blue',
+                                color: mode === 'dark' ? 'white' : 'blue',
                         },
                         },
                         '& .MuiOutlinedInput-root': {
                             '& fieldset': {
-                                borderColor: mode === 'dark' ? 'black' : 'blue',
+                                borderColor: mode === 'dark' ? 'white' : 'blue',
                             },
                             '&:hover fieldset': {
-                                borderColor: mode === 'dark' ? 'black' : 'blue',
+                                borderColor: mode === 'dark' ? 'white' : 'blue',
                                 borderWidth: '2px', 
                             },
                             '&.Mui-focused fieldset': { 
-                                borderColor: mode === 'dark' ? 'black' : 'blue',
+                                borderColor: mode === 'dark' ? 'white' : 'blue',
                                 borderWidth: '2px', 
                             },
                         },
                         '& .MuiInputBase-input::placeholder': {
-                            color: mode === 'dark' ? 'black' : 'blue',
+                            color: mode === 'dark' ? 'white' : 'blue',
                             opacity: 1,
                         },
                     },
@@ -54,16 +54,16 @@ export const ThemeProvider = ({ children }) => {
             MuiButton: {
                 styleOverrides: {
                     root: ({ theme }) => ({
-                        color: theme.palette.mode === 'dark' ? 'black' : 'blue',
+                        color: theme.palette.mode === 'dark' ? 'white' : 'blue',
                     }),
                 },
             },
             MuiRadio: {
                 styleOverrides: {
                     root: ({ theme }) => ({
-                        color: theme.palette.mode === 'dark' ? 'black' : 'blue',
+                        color: theme.palette.mode === 'dark' ? 'white' : 'blue',
                         '&.Mui-checked': {
-                            color: theme.palette.mode === 'dark' ? 'black' : 'blue',
+                            color: theme.palette.mode === 'dark' ? 'white' : 'blue',
                         },
                     }),
                 },
@@ -71,14 +71,21 @@ export const ThemeProvider = ({ children }) => {
             MuiFormControlLabel: {
                 styleOverrides: {
                     label: ({ theme }) => ({
-                        color: theme.palette.mode === 'dark' ? 'black' : 'blue',
+                        color: theme.palette.mode === 'dark' ? 'white' : 'blue',
                     }),
                 },
             },
             MuiFormLabel: {
                 styleOverrides: {
                     root: ({ theme }) => ({
-                        color: theme.palette.mode === 'dark' ? 'black' : 'blue',
+                        color: theme.palette.mode === 'dark' ? 'white' : 'blue',
+                    }),
+                },
+            },
+            MuiTypography: {
+                styleOverrides: {
+                    root: ({ theme }) => ({
+                        color: theme.palette.mode === 'dark' ? 'white' : 'blue',
                     }),
                 },
             },

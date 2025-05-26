@@ -18,24 +18,25 @@ const BookPage = () => {
     const navigate = useNavigate()
     const allBooks = useSelector(state => state.books.all)
     const dispatch = useDispatch();
+    const { isDarkTheme } = useTheme();
     const [textColor, setTextColor] = useState('black')
     const [textSize, setTextSize] = useState('medium')
     const [isFontBold, setIsFontBold] = useState(false)
-    const { isDarkTheme } = useTheme();
 
     const book = allBooks.find(book => book.id === Number(id))
-    console.log(isFontBold)
 
     return (
-        <Box sx={{width: '80%', mx: 'auto', display: 'flex', flexDirection: 'column', gap: 2, color: isDarkTheme ? 'black' : 'blue' }}>
+        <Box sx={{width: '80%', mx: 'auto', display: 'flex', flexDirection: 'column', gap: 2}}>
             <Box sx={{ mx: 'auto', display: 'flex', gap: 2  }}>
-                <ArrowBackIcon onClick={() => navigate(-1)} sx={{'&:hover': {
-                    cursor: 'pointer',
-                    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                    borderRadius: 2,
-                    transform: 'scale(1.1)', 
-                    transition: 'transform 0.3s ease' 
-                }}} />
+                <ArrowBackIcon onClick={() => navigate(-1)} sx={{ color: isDarkTheme ? 'white' : 'black',
+                    '&:hover': {
+                        cursor: 'pointer',
+                        backgroundColor: 'white',
+                        borderRadius: 2,
+                        transform: 'scale(1.1)', 
+                        transition: 'transform 0.3s ease' 
+                    }
+                }} />
                 <Box 
                     component="img" 
                     src={book.coverUrl} 
@@ -69,7 +70,7 @@ const BookPage = () => {
                             name="row-radio-buttons-group"
                             onChange={(e) => setTextColor(e.target.value)}
                         >
-                            <FormControlLabel value="black" control={<Radio />} label="black" />
+                            <FormControlLabel value={isDarkTheme ? "white" : "black"} control={<Radio />} label={isDarkTheme ? "white" : "black"} />
                             <FormControlLabel value="sepia" control={<Radio />} label="sepia" />
                             <FormControlLabel value="dark blue" control={<Radio />} label="dark blue" />
                         </RadioGroup>
@@ -92,24 +93,29 @@ const BookPage = () => {
                         : <Button onClick={() => setIsFontBold(prev => !prev)}>Жирный шрифт</Button>
                     }
                 </Box>
-                <Box sx={{ 
-                    color: textColor === 'dark blue' ? '#00008B' : textColor === 'sepia' ? '#704214' : 'black',
+                <Box sx={{
+                    '& .MuiTypography-root': {
+                        color: `${textColor === 'dark blue' ? '#00008B' : 
+                                textColor === 'sepia' ? '#704214' : 
+                                isDarkTheme ? 'white' : 'black'} !important`,
+                        fontWeight: `${isFontBold ? 'bold' : 'normal'} !important`,
+                    }
                 }}>
                     <Typography 
                         sx={{fontWeight: isFontBold ? 'bold' : 'regular' }} 
-                        variant={textSize === 'small' ? 'body2' : textSize === 'large' ? 'h6' : 'body1'} paragraph
+                        variant={textSize === 'small' ? 'h7' : textSize === 'large' ? 'h4' : 'body1'} paragraph
                     >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </Typography>
                     <Typography
                         sx={{fontWeight: isFontBold ? 'bold' : 'regular' }} 
-                        variant={textSize === 'small' ? 'body2' : textSize === 'large' ? 'h6' : 'body1'} paragraph
+                        variant={textSize === 'small' ? 'h7' : textSize === 'large' ? 'h4' : 'body1'} paragraph
                     >
                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </Typography>
                     <Typography 
                         sx={{fontWeight: isFontBold ? 'bold' : 'regular' }} 
-                        variant={textSize === 'small' ? 'body2' : textSize === 'large' ? 'h6' : 'body1'} paragraph
+                        variant={textSize === 'small' ? 'h7' : textSize === 'large' ? 'h4' : 'body1'} paragraph
                     >
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                     </Typography>    

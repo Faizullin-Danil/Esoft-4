@@ -1,16 +1,21 @@
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { toggleFavourite } from '../store/BooksSlice';
+import { toggleFavourite, deleteBook } from '../store/BooksSlice';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { Link } from "react-router";
 import { useTheme } from '../context/ThemeContext';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const BookCard = React.memo(({ book }) => {
     const dispatch = useDispatch();
     const { isDarkTheme } = useTheme();
 
+    const handleDeleteBook = (id) => {
+        dispatch(deleteBook(id))   
+    }
+    
     return (
         <Box
             sx={{
@@ -18,12 +23,25 @@ const BookCard = React.memo(({ book }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 border: '1px solid',
-                borderColor: isDarkTheme ? 'black' : 'blue',
+                borderColor: isDarkTheme ? 'white' : 'blue',
                 p: 1,
                 gap: 2,
                 width: '100%',
+                position: 'relative' 
             }}
         >
+            <IconButton 
+                sx={{
+                    position: 'absolute',
+                    top: 4,
+                    right: 4,
+                    color: 'red'
+                }}
+                onClick={() => handleDeleteBook(book.id)}
+            >
+                <DeleteForeverIcon />
+            </IconButton>
+
             <Link
                 to={`book/${book.id}`}
                 style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}
@@ -55,7 +73,7 @@ const BookCard = React.memo(({ book }) => {
                     </Box>
                 </Box>
             </Link>
-            <Button  onClick={() => dispatch(toggleFavourite(book.id))}>
+            <Button onClick={() => dispatch(toggleFavourite(book.id))}>
                 {book.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </Button>
         </Box>
