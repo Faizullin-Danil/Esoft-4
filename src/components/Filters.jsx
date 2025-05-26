@@ -32,11 +32,6 @@ const Filters = () => {
         }
     }
 
-    const handleChangeFormData = (field) => (e) => {
-        setFormData({ ...formData, [field]: e.target.value });
-        setErrors({ ...errors, [field]: false });
-    };
-
     const handleResetFilters = () => {
         dispatch(resetFilters());
         setSelectedAuthors([]);

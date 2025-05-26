@@ -30,7 +30,6 @@ const Modal = ({ openDialog, setOpenDialog, handleResetFilters }) => {
             return; 
         }
 
-        console.log(formData)
         dispatch(addBook(formData))
         handleResetFilters()
         

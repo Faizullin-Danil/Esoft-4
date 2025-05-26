@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { resetFavourites } from '../store/BooksSlice';
 
 const SettingsPage = () => {
-    const { isDarkTheme, toggleTheme } = useTheme();
+    const { toggleTheme } = useTheme();
     const dispatch = useDispatch();
     const [openDialog, setOpenDialog] = useState(false);
 
