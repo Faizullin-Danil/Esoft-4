@@ -26,8 +26,8 @@ const Modal = ({ openDialog, setOpenDialog, handleResetFilters }) => {
         
         if (hasEmptyField) {
             setIsEmpty(true);
-            setTimeout(() => setIsEmpty(false), 1000);
-            return; 
+            const timer = setTimeout(() => setIsEmpty(false), 1000);
+            return () => clearTimeout(timer);
         }
 
         dispatch(addBook(formData))
